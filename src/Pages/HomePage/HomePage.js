@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import NavbarComp from '../../Components/Navbar/Navbar'
 import SpinnerComp from '../../Components/Spinner/Spinner'
 import SliderComp from '../../Components/Slider/Slider'
-import { getAllMovies } from '../../API/Movies/Movies'
+import { getAllMovies } from '../../API/Movies'
 import { Link } from 'react-router-dom'
 import { Image } from 'react-bootstrap'
+import {ThemeContext} from "../../App"
 
 function HomePage() {
+
+    const {theme}  = useContext(ThemeContext);
+    const isDarkTheme = theme==="dark"
     const [isLoading, setIsLoading] = useState(true)
     const [movieList, setMovieList] = useState([])
 
@@ -19,7 +23,7 @@ function HomePage() {
       init()
     },[])
   return ( 
-  <div>
+  <div className={(isDarkTheme)?"bg-light text-dark":"bg-dark text-light"}>
     <NavbarComp/>
     {
       (isLoading) ?<SpinnerComp/>:<><SliderComp/>
