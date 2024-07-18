@@ -18,7 +18,7 @@ function Auth() {
   };
 
   const redirect = () => {
-    const userTypes = localStorage.getItem("userTypes");
+    const userTypes = localStorage.getItem("userType");
     if (userTypes === "CUSTOMER") {
       navigate("/");
     } else if (userTypes === "ADMIN") {
